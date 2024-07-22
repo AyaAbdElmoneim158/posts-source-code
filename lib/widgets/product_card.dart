@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../model/product.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard(
-      {super.key,
-      required this.product,
-      this.imageAlignment = Alignment.center,
-      this.onProductPressed});
+  const ProductCard({
+    super.key,
+    required this.product,
+    this.imageAlignment = Alignment.center,
+    this.onProductPressed,
+  });
 
   final Product product;
   final Alignment imageAlignment;
@@ -30,8 +31,11 @@ class ProductCard extends StatelessWidget {
                 SizedBox(
                     height: 100,
                     width: 100,
-                    child: Image.network(product.image,
-                        alignment: imageAlignment, fit: BoxFit.contain)),
+                    child: Image.network(
+                      product.image,
+                      alignment: imageAlignment,
+                      fit: BoxFit.cover,
+                    )),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -54,13 +58,6 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.category,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  Text(
                     product.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -78,6 +75,15 @@ class ProductCard extends StatelessWidget {
                             color: Colors.grey,
                           ),
                     ),
+                  const SizedBox(height: 8),
+                  Text(
+                    product.category,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: Theme.of(context).textTheme.caption,
+                    textAlign: TextAlign.right,
+                  ),
                 ],
               ),
             ),
